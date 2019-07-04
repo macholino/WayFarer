@@ -11,8 +11,15 @@ env:
   - SECRETKEY='secretjwtkey'  
 script:
   - npm test
-after_success:
-  - nyc report --reporter=text-lcov | coveralls
+before_deploy:
+  - rm -rf .tmp
+  - rm -rf .DS_Store
+  - rm -rf node_modules
+  - export ELASTIC_BEANSTALK_ENV=node-server-${TRAVIS_BRANCH}
+  - zip -r --exclude=\*.git\* --exclude=\*.DS_Store\* --exclude=\*test\  node-server.zip
+  - export ELASTIC_BEANSTALK_LABEL=git-$(git rev-parse --verify HEAD --short)
+  - export ELASTIC_BEANSTALK_DESCRIPTION=https://github.com/sumn2u/node-server/tree/$(git
+    rev-parse HEAD)
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIAVIIZVYIQWED3RABC
@@ -20,6 +27,11 @@ deploy:
   region: "us-east-2"  
   app: "wayfarer"
   env: "Wayfarer-env"
+  only_create_app_version: false
+after_deploy:
+- rm node-server.zip
+after_success:
+  - nyc report --reporter=text-lcov | coveralls
   on:
     branch: ft-book-seat-endpoint-166997580
 
