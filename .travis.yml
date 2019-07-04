@@ -32,6 +32,4 @@ after_deploy:
 - rm node-server.zip
 after_success:
   - nyc report --reporter=text-lcov | coveralls
-  on:
-    branch: ft-book-seat-endpoint-166997580
 
