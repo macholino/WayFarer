@@ -15,11 +15,11 @@ after_success:
   - nyc report --reporter=text-lcov | coveralls
 deploy:
   - provider: elasticbeanstalk
-    access_key_id: AKIAVIIZVYIQWED3RABC
-    secret_access_key: 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
+    access_key_id: 
+    secret_access_key: 
     region: "us-east-2"  
     app: "wayfarer"
     env: "Wayfarer-env"
     only_create_app_version: false
     on:
-       branch: ft-book-seat-endpoint-166997580 # ← new!
+       branch: ft-book-seat-endpoint-166997580
