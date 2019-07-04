@@ -3,6 +3,7 @@ node_js:
   - "10"
 services:
   - postgresql
+  - docker
 before_script:
   - psql -c 'DROP DATABASE IF EXISTS wayfarer;' -U postgres
   - psql -c 'create database wayfarer;' -U postgres
@@ -12,5 +13,13 @@ script:
   - npm test
 after_success:
   - nyc report --reporter=text-lcov | coveralls
-
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAVIIZVYIQWED3RABC
+  secret_access_key: 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
+  region: "us-east-2"  
+  app: "wayfarer"
+  env: "Wayfarer-env"
+  on:
+    branch: ft-book-seat-endpoint-166997580
 
