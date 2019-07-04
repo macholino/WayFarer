@@ -13,7 +13,7 @@ app.use(express.static('./UI'));
 
 app.use('/', endpoints);
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT;
 
 if (process.env.NODE_ENV === 'test') {
   port = process.env.TEST_PORT;

@@ -61,7 +61,7 @@ export default class Schemas {
   }
 
   /**
-   * returns schema for validating user sign in data
+   * returns schema for validating bus registration data
    * @returns {Object} schema for creating an object
    */
   static get registerBusSchema() {
@@ -73,6 +73,17 @@ export default class Schemas {
         .required(),
       capacity: Joi.number().required(),
       vinnumber: Joi.string().trim().required(),
+    });
+  }
+
+  /**
+   * returns schema for validating booking data
+   * @returns {Object} schema for creating an object
+   */
+  static get bookingSchema() {
+    return Joi.object({
+      tripid: Joi.number().integer().min(1).required(),
+      seatnumber: Joi.number().integer().optional(),
     });
   }
 }

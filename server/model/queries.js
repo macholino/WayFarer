@@ -31,4 +31,22 @@ export default class Queries {
     return 'SELECT capacity from buses WHERE id = $1';
   }
 
+  static get checkIfThereIsSpaceInVehicle() {
+    return 'SELECT vehiclecapacity, occupiedspaces FROM trips WHERE id = $1';
+  }
+
+  static get bookTheSeatOnTheTrip() {
+    return `WITH insertres AS ( INSERT INTO bookings (tripid, userid) VALUES ($1, $2) RETURNING * ), 
+    updateres as (UPDATE trips SET occupiedspaces[$3] = $3 WHERE id = $1 returning * )
+    SELECT insertres.id as bookingid, insertres.userid as userid, insertres.tripid, 
+    updateres.busid as busid, updateres.tripdate as tripdate, updateres.occupiedspaces FROM insertres, updateres`;
+  }
+
+  static get checkIfSeatNumberIsAvailabe() {
+    return 'SELECT occupiedspaces[$1] FROM trips WHERE id = $2';
+  }
+
+  static get initializeBusCapacity() {
+    return 'UPDATE trips SET occupiedspaces = $1 WHERE id = $2';
+  }
 }

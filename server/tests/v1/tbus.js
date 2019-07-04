@@ -21,6 +21,35 @@ describe('Testing the register bus Endpoint', () => {
     expect(res.body).to.have.property('data');
   });
 
+  it('should register a new bus successfully', async () => {
+    const res = await chai.request(app).post('/api/v1/buses').set('x-auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmaXJzdG5hbWUiOiJtYWNobyIsImlzYWRtaW4iOnRydWUsImVtYWlsIjoibGlub0BnbS5jb20iLCJpYXQiOjE1NjE3MDUwMjh9.-KMTYqYKJTTIkm_Xo67KINlK8Q6ZMQItENkfskyWX8E').type('form')
+      .send({
+        platenumber: 're2343yu',
+        manufacturer: 'iuoiui',
+        model: 'uiyiuhi',
+        capacity: 1,
+        year: 2019,
+        vinnumber: '87yg68ut76987875698h8690',
+      });
+    expect(res).to.have.status(201);
+    expect(res.body).to.have.property('status');
+    expect(res.body).to.have.property('data');
+  });
+
+  it('should register a new bus successfully', async () => {
+    const res = await chai.request(app).post('/api/v1/buses').set('x-auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmaXJzdG5hbWUiOiJtYWNobyIsImlzYWRtaW4iOnRydWUsImVtYWlsIjoibGlub0BnbS5jb20iLCJpYXQiOjE1NjE3MDUwMjh9.-KMTYqYKJTTIkm_Xo67KINlK8Q6ZMQItENkfskyWX8E').type('form')
+      .send({
+        platenumber: 're33232343yu',
+        manufacturer: 'iuoiui',
+        model: 'uiyiuhi',
+        capacity: 15,
+        year: 2019,
+        vinnumber: '87yg68ut76wetr987875698h8690',
+      });
+    expect(res).to.have.status(201);
+    expect(res.body).to.have.property('status');
+    expect(res.body).to.have.property('data');
+  });
   it('should throw a conflict error ie already existent bus', async () => {
     const res = await chai.request(app).post('/api/v1/buses').set('x-auth-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJmaXJzdG5hbWUiOiJtYWNobyIsImlzYWRtaW4iOnRydWUsImVtYWlsIjoibGlub0BnbS5jb20iLCJpYXQiOjE1NjE3MDUwMjh9.-KMTYqYKJTTIkm_Xo67KINlK8Q6ZMQItENkfskyWX8E').type('form')
       .send({

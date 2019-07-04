@@ -107,7 +107,8 @@ function () {
                 token = _jsonwebtoken["default"].sign({
                   id: id,
                   email: email,
-                  firstname: firstname
+                  firstname: firstname,
+                  isadmin: isadmin
                 }, process.env.SECRETKEY);
                 dbOperationResult2.rows[0].token = token;
                 res.set('x-auth-token', token);

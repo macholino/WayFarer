@@ -29,10 +29,10 @@ describe('Testing the create user Endpoint', function () {
           case 0:
             _context.next = 2;
             return _chai["default"].request(_index["default"]).post('/api/v1/auth/signup/').type('form').send({
-              firstname: 'stanley',
-              lastname: 'okhueleigbe',
-              password: 'piloting',
-              email: 'stanlex4400@gmail.com',
+              firstname: 'macho',
+              lastname: 'lino',
+              password: 'password',
+              email: 'lino@gm.com',
               isadmin: 'true'
             });
 
@@ -49,7 +49,7 @@ describe('Testing the create user Endpoint', function () {
       }
     }, _callee);
   })));
-  it('should create a new account as a normal user successfully',
+  it('should create a new account as Admin successfully',
   /*#__PURE__*/
   _asyncToGenerator(
   /*#__PURE__*/
@@ -61,11 +61,11 @@ describe('Testing the create user Endpoint', function () {
           case 0:
             _context2.next = 2;
             return _chai["default"].request(_index["default"]).post('/api/v1/auth/signup/').type('form').send({
-              firstname: 'osas',
-              lastname: 'edobor',
+              firstname: 'stanley',
+              lastname: 'okhueleigbe',
               password: 'piloting',
-              email: 'osas0@test.com',
-              isadmin: 'false'
+              email: 'stanlex4400@gmail.com',
+              isadmin: 'true'
             });
 
           case 2:
@@ -81,7 +81,7 @@ describe('Testing the create user Endpoint', function () {
       }
     }, _callee2);
   })));
-  it('should return a validation error',
+  it('should create a new account as a normal user successfully',
   /*#__PURE__*/
   _asyncToGenerator(
   /*#__PURE__*/
@@ -93,27 +93,27 @@ describe('Testing the create user Endpoint', function () {
           case 0:
             _context3.next = 2;
             return _chai["default"].request(_index["default"]).post('/api/v1/auth/signup/').type('form').send({
-              username: Number(34564),
-              firstname: 'otaigbe',
-              lastname: 'okhueleigbe',
-              password: '',
-              email: 'stanlex4400@gmail.com',
-              isadmin: true
+              firstname: 'osas',
+              lastname: 'edobor',
+              password: 'piloting',
+              email: 'osas0@test.com',
+              isadmin: 'false'
             });
 
           case 2:
             res = _context3.sent;
-            expect(res).to.have.status(400);
+            expect(res).to.have.status(201);
             expect(res.body).to.have.property('status');
+            expect(res.body).to.have.property('data');
 
-          case 5:
+          case 6:
           case "end":
             return _context3.stop();
         }
       }
     }, _callee3);
   })));
-  it('should return an already existent user message',
+  it('should return a validation error',
   /*#__PURE__*/
   _asyncToGenerator(
   /*#__PURE__*/
@@ -125,16 +125,17 @@ describe('Testing the create user Endpoint', function () {
           case 0:
             _context4.next = 2;
             return _chai["default"].request(_index["default"]).post('/api/v1/auth/signup/').type('form').send({
-              firstname: 'stanley',
+              username: Number(34564),
+              firstname: 'otaigbe',
               lastname: 'okhueleigbe',
-              password: 'piloting',
+              password: '',
               email: 'stanlex4400@gmail.com',
-              isadmin: 'true'
+              isadmin: true
             });
 
           case 2:
             res = _context4.sent;
-            expect(res).to.have.status(409);
+            expect(res).to.have.status(400);
             expect(res.body).to.have.property('status');
 
           case 5:
@@ -143,5 +144,36 @@ describe('Testing the create user Endpoint', function () {
         }
       }
     }, _callee4);
+  })));
+  it('should return an already existent user message',
+  /*#__PURE__*/
+  _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee5() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return _chai["default"].request(_index["default"]).post('/api/v1/auth/signup/').type('form').send({
+              firstname: 'stanley',
+              lastname: 'okhueleigbe',
+              password: 'piloting',
+              email: 'stanlex4400@gmail.com',
+              isadmin: 'true'
+            });
+
+          case 2:
+            res = _context5.sent;
+            expect(res).to.have.status(409);
+            expect(res.body).to.have.property('status');
+
+          case 5:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
   })));
 });

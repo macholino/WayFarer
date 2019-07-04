@@ -28,6 +28,56 @@ function () {
     get: function get() {
       return 'SELECT * FROM users WHERE email = $1';
     }
+  }, {
+    key: "createTrip",
+    get: function get() {
+      return 'INSERT into trips (busid, origin, destination, tripdate, vehiclecapacity, fare, status) vALUES ($1, $2, $3, $4, $5, $6, $7) returning *';
+    }
+  }, {
+    key: "checkIfATripAlreadyExists",
+    get: function get() {
+      return 'SELECT * FROM trips WHERE busid = $1 AND tripdate = $2';
+    }
+  }, {
+    key: "getAllTrips",
+    get: function get() {
+      return 'SELECT * FROM trips LIMIT  $1 OFFSET $2';
+    }
+  }, {
+    key: "checkIfABusAlreadyExists",
+    get: function get() {
+      return 'SELECT * FROM buses WHERE platenumber = $1 OR vinnumber = $2';
+    }
+  }, {
+    key: "registerBus",
+    get: function get() {
+      return 'INSERT INTO buses (platenumber, manufacturer, model, capacity, year, vinnumber) VALUES ($1, $2, $3, $4, $5, $6) returning *';
+    }
+  }, {
+    key: "retrieveBusCapacity",
+    get: function get() {
+      return 'SELECT capacity from buses WHERE id = $1';
+    }
+  }, {
+    key: "checkIfThereIsSpaceInVehicle",
+    get: function get() {
+      return 'SELECT vehiclecapacity, occupiedspaces FROM trips WHERE id = $1';
+    }
+  }, {
+    key: "bookTheSeatOnTheTrip",
+    get: function get() {
+      return "WITH insertres AS ( INSERT INTO bookings (tripid, userid) VALUES ($1, $2) RETURNING * ), \n    updateres as (UPDATE trips SET occupiedspaces[$3] = $3 WHERE id = $1 returning * )\n    SELECT insertres.id as bookingid, insertres.userid as userid, insertres.tripid, \n    updateres.busid as busid, updateres.tripdate as tripdate, updateres.occupiedspaces FROM insertres, updateres";
+    }
+  }, {
+    key: "checkIfSeatNumberIsAvailabe",
+    get: function get() {
+      return 'SELECT occupiedspaces[$1] FROM trips WHERE id = $2';
+    }
+  }, {
+    key: "initializeBusCapacity",
+    get: function get() {
+      return 'UPDATE trips SET occupiedspaces = $1 WHERE id = $2';
+    }
   }]);
 
   return Queries;

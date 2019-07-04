@@ -24,7 +24,7 @@ function () {
       return res.status(400).json({
         status: 'failure',
         error: {
-          message: result.error.message
+          message: result.error.message.replace(/[\W_]+/g, ' ')
         }
       });
     }

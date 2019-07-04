@@ -8,6 +8,19 @@ chai.use(chaiHttp);
 describe('Testing the create user Endpoint', () => {
   it('should create a new account as Admin successfully', async () => {
     const res = await chai.request(app).post('/api/v1/auth/signup/').type('form').send({
+      firstname: 'macho',
+      lastname: 'lino',
+      password: 'password',
+      email: 'lino@gm.com',
+      isadmin: 'true',
+    });
+    expect(res).to.have.status(201);
+    expect(res.body).to.have.property('status');
+    expect(res.body).to.have.property('data');
+  });
+
+  it('should create a new account as Admin successfully', async () => {
+    const res = await chai.request(app).post('/api/v1/auth/signup/').type('form').send({
       firstname: 'stanley',
       lastname: 'okhueleigbe',
       password: 'piloting',

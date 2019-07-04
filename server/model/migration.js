@@ -38,9 +38,9 @@ const createSchema = () => {
    )`;
   const createBookingsTable = `CREATE TABLE IF NOT EXISTS bookings (
         id bigserial PRIMARY KEY UNIQUE NOT NULL,
-        tripid INTEGER NOT NULL,
-        userid INTEGER NOT NULL,
-        createdon DATE NOT NULL
+        tripid INTEGER NOT NULL REFERENCES trips(id),
+        userid INTEGER NOT NULL REFERENCES users(id),
+        createdon TIMESTAMP(8) DEFAULT now()
    )`;
   pool.connect(async (err, client) => {
     if (err) console.log(err);

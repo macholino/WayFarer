@@ -1,0 +1,12 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "361367978529.dkr.ecr.us-east-2.amazonaws.com/wayfarer:latest",
+      "Update": "true"
+    },
+    "Ports": [
+      {
+        "ContainerPort": "8833"
+      }
+    ]
+  }

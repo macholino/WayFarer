@@ -11,7 +11,6 @@ var _dotenv = _interopRequireDefault(require("dotenv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-/* eslint-disable no-cond-assign */
 _dotenv["default"].config();
 
 var connectionString = process.env.PGDATABASE_DEVELOPMENT;

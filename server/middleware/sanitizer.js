@@ -3,9 +3,6 @@ import { check, body, validationResult } from 'express-validator';
 
 export default class Sanitizer {
 /**
-   * @param {object} req client request Object
-   * @param {object} res server response object
-   * @param {object} next control structure to continue processing
    * @returns {JSON}
    */
   static sanitizeUserBioData() {
@@ -19,9 +16,6 @@ export default class Sanitizer {
   }
 
   /**
-   * @param {object} req client request Object
-   * @param {object} res server response object
-   * @param {object} next control structure to continue processing
    * @returns {JSON}
    */
   static sanitizeUserSignInData() {
@@ -32,9 +26,6 @@ export default class Sanitizer {
   }
 
   /**
-   * @param {object} req client request Object
-   * @param {object} res server response object
-   * @param {object} next control structure to continue processing
    * @returns {JSON}
    */
   static sanitizeCreateTripData() {
@@ -49,9 +40,6 @@ export default class Sanitizer {
   }
 
   /**
-   * @param {object} req client request Object
-   * @param {object} res server response object
-   * @param {object} next control structure to continue processing
    * @returns {JSON}
    */
   static sanitizeTripQueries() {
@@ -62,9 +50,6 @@ export default class Sanitizer {
   }
 
   /**
-   * @param {object} req client request Object
-   * @param {object} res server response object
-   * @param {object} next control structure to continue processing
    * @returns {JSON}
    */
   static sanitizeBusData() {
@@ -75,6 +60,16 @@ export default class Sanitizer {
       check('year').trim(),
       check('capacity').trim(),
       check('vinnumber').trim(),
+    ];
+  }
+
+  /**
+   * @returns {JSON}
+   */
+  static sanitizeBookingData() {
+    return [
+      check('tripid').trim().isInt(),
+      // check('seatnumber').trim().isInt(),
     ];
   }
 }
