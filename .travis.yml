@@ -3,7 +3,6 @@ node_js:
   - "10"
 services:
   - postgresql
-  - docker
 before_script:
   - psql -c 'DROP DATABASE IF EXISTS wayfarer;' -U postgres
   - psql -c 'create database wayfarer;' -U postgres
