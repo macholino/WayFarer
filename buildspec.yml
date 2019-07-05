@@ -11,8 +11,6 @@ phases:
       - npm test
       - npm run build
   post_build:
-    commands:
-      - npm start
 artifacts:
   files:
     - '**/*'
