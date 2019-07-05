@@ -10,7 +10,11 @@ phases:
     commands:
       - npm test
       - npm run build
-  post_build:
 artifacts:
   files:
-    - '**/*'
+    - README.md
+    - package.json
+    - server/**/*
+    - .ebextensions/*
+    - node_modules/**/*
+    - public/**/*
