@@ -10,7 +10,5 @@ phases:
     commands:
       - npm test
       - npm run build
-artifacts:
-  type: zip
   files:
     - '**/*'
