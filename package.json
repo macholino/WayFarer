@@ -10,8 +10,8 @@
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./server/index.js",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel ./server --out-dir ./build/server",
-    "build": "npm run clean && npm run build-babel",
-    "start": "cross-env NODE_ENV=production npm run build && node ./build/server/index.js",
+    "build": "cross-env NODE_ENV=production npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/server/index.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "migration_prod": "cross-env NODE_ENV=production babel-node ./server/model/migration.js --env"
   },
