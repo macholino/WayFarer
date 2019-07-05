@@ -13,13 +13,5 @@ script:
   - npm test
 after_success:
   - nyc report --reporter=text-lcov | coveralls
-deploy:
-  - provider: elasticbeanstalk
-    access_key_id: 
-    secret_access_key: 
-    region: "us-east-2"  
-    app: "wayfarer"
-    env: "Wayfarer-env"
-    only_create_app_version: false
-    on:
-       branch: ft-book-seat-endpoint-166997580
+  on:
+    branch: ft-book-seat-endpoint-166997580
