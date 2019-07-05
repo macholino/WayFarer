@@ -5,4 +5,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 8833
-CMD [ "npm", "start" ]
+CMD [ "node", "./build/server/index.js" ]
