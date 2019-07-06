@@ -26,14 +26,14 @@ app.use(_express["default"].urlencoded({
 app.use(_express["default"].json());
 app.use(_express["default"]["static"]('./UI'));
 app.use('/', _index["default"]);
-var port = process.env.PORT || 8833;
+var port = process.env.PORT;
 
 if (process.env.NODE_ENV === 'test') {
   port = process.env.TEST_PORT;
 }
 
 var server = app.listen(port, function () {
-  _winston["default"].info("app running on ".concat(port, "..."));
+  _winston["default"].info("app running on port ".concat(port, "..."));
 });
 var _default = server;
 exports["default"] = _default;

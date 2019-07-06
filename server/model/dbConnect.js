@@ -3,14 +3,14 @@ import conf from 'dotenv';
 
 conf.config();
 
-let connectionString = process.env.PGDATABASE_DEVELOPMENT;
+let connectionString = process.env.PGDATABASE_PRODUCTION;
 
 if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.PGDATABASE_TEST;
 }
 
-if (process.env.NODE_ENV === 'production') {
-  connectionString = process.env.PGDATABASE_PRODUCTION;
+if (process.env.NODE_ENV === 'development') {
+  connectionString = process.env.PGDATABASE_DEVELOPMENT;
 }
 const config = {
   connectionString,

@@ -13,14 +13,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _dotenv["default"].config();
 
-var connectionString = process.env.PGDATABASE_DEVELOPMENT;
+var connectionString = process.env.PGDATABASE_PRODUCTION;
 
 if (process.env.NODE_ENV === 'test') {
   connectionString = process.env.PGDATABASE_TEST;
 }
 
-if (process.env.NODE_ENV === 'production') {
-  connectionString = process.env.PGDATABASE_PRODUCTION;
+if (process.env.NODE_ENV === 'development') {
+  connectionString = process.env.PGDATABASE_DEVELOPMENT;
 }
 
 var config = {
