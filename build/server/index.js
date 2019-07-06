@@ -26,7 +26,7 @@ app.use(_express["default"].urlencoded({
 app.use(_express["default"].json());
 app.use(_express["default"]["static"]('./UI'));
 app.use('/', _index["default"]);
-var port = process.env.PORT;
+var port = process.env.PORT || 8833;
 
 if (process.env.NODE_ENV === 'test') {
   port = process.env.TEST_PORT;

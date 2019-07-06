@@ -18,5 +18,5 @@ let port = process.env.PORT || 8833;
 if (process.env.NODE_ENV === 'test') {
   port = process.env.TEST_PORT;
 }
-const server = app.listen(port, () => { winston.info(`app running on ${port}...`); });
+const server = app.listen(port, () => { winston.info(`app running on port ${port}...`); });
 export default server;
