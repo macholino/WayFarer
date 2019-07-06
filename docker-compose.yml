@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  wayfarer:
+    image: wayfarer
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8833:8833

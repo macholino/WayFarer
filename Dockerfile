@@ -1,8 +1,7 @@
 FROM node:10
-WORKDIR /usr/src/wayfarer
+WORKDIR /usr/src/app
 COPY package*.json ./
-
 RUN npm install
 COPY . .
 EXPOSE 8833
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]

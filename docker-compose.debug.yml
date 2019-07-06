@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  wayfarer:
+    image: wayfarer
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8833:8833
+      - 9229:9229
+    ## set your startup file here
+    command: node --inspect index.js
