@@ -54,7 +54,7 @@ export default class Trips {
       const { page, quantity } = req.query;
       const offset = (page - 1) * quantity;
       const dbOperationResult = await helper.wrapDbOperationInTryCatchBlock(res, queries.getAllTrips, [quantity, offset]);
-      return res.status(200).json(response.success(`Every Trip. Page ${page}`, dbOperationResult.rows));
+      return res.status(200).json(response.success(`All trips. Page ${page} of ${dbOperationResult.rowCount}/${quantity}`, dbOperationResult.rows));
     }
     errorHandler.validationError(res, result);
   }
